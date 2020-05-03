@@ -78,8 +78,8 @@ namespace covidSim.Services
             }
 
             state = PersonState.Walking;
-            atHomeCount = 0;
-            Mood = PersonMood.Normal;
+            // atHomeCount = 0;
+            // Mood = PersonMood.Normal;
             CalcNextPositionForWalkingPerson();
         }
 
