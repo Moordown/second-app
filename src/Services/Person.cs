@@ -11,11 +11,12 @@ namespace covidSim.Services
         public PersonMood Mood { get; private set; } = PersonMood.Normal;
         private int atHomeCount;
 
-        public Person(int id, int homeId, CityMap map)
+        public Person(int id, int homeId, CityMap map, string status)
         {
             Id = id;
             HomeId = homeId;
             atHomeCount = 0;
+            Status = status;
 
             var homeCoords = map.Houses[homeId].Coordinates.LeftTopCorner;
             var x = homeCoords.X + random.Next(HouseCoordinates.Width);
@@ -23,6 +24,7 @@ namespace covidSim.Services
             Position = new Vec(x, y);
         }
 
+        public string Status;
         public int Id;
         public int HomeId;
         public Vec Position;
