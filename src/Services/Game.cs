@@ -25,6 +25,15 @@ namespace covidSim.Services
             _lastUpdate = DateTime.Now;
         }
 
+        public Game Restart()
+        {
+            Map = new CityMap();
+            People = CreatePopulation();
+            _lastUpdate = DateTime.Now;
+
+            return this;
+        }
+
         public static Game Instance => _gameInstance ?? (_gameInstance = new Game());
 
         private List<Person> CreatePopulation()
@@ -32,7 +41,7 @@ namespace covidSim.Services
             var random = new Random();
             return Enumerable
                 .Repeat(0, PeopleCount)
-                .Select((_, index) => new Person(index, FindHome(), Map, random.NextDouble() <= 0.03 ? "fee" : "ok"))
+                .Select((_, index) => new Person(index, FindHome(), Map, index <= PeopleCount * 0.03))
                 .ToList();
         }
 
