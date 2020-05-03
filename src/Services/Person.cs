@@ -9,6 +9,7 @@ namespace covidSim.Services
         private const int MaxDistancePerTurn = 30;
         private static Random random = new Random();
         private PersonState state = PersonState.AtHome;
+        internal PersonState State => state;
         private int IllnessDuration;
         private int HomeStayingDuration;
         private Vec homeCoords;
@@ -207,6 +208,14 @@ namespace covidSim.Services
                 vec.Y <= homeCenter.Y + HouseCoordinates.Height / 2)
                 return true;
             return false;
+        }
+
+        public void GetInfected()
+        {
+            if (random.NextDouble() > 0.5)
+            {
+                IsSick = true;
+            }
         }
     }
 }
