@@ -8,8 +8,8 @@ export default function Person({ person, onClick }) {
     const y = person.position.y / MAX_HEIGHT * 100;
     return (
         <div
-            className={ styles.root }
-            style={{ left: `${ x }%`, top: `${ y }%` }}
+            className={ person.mood === "Bored" ? styles.bored : styles.root }
+            style={{ left: `${ x }%`, top: `${ y }%`}}
             onClick={ () => onClick(person.id) }
         />
     );
